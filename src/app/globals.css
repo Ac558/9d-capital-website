@@ -1,0 +1,383 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   9D CAPITAL — "The Embassy, Quietly"
+   Final Design Specification — Round 1 Improvements
+   ============================================ */
+
+/* SAFETY NET: All content always visible */
+section { opacity: 1 !important; }
+
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  --primary-dark: #0F1B2D;
+  --obsidian: #0D0D0D;
+  --parchment: #F8F5F0;
+  --warm-sand: #EDE8E0;
+  --marble: #FAFAF7;
+  --text-primary: #1A1A1A;
+  --text-secondary: #5C5C6B;
+  --gold: #C5943F;
+  --gold-hover: #B07E2F;
+  --burgundy: #6B1D2A;
+}
+
+/* ============================================
+   BASE TYPOGRAPHY
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--parchment);
+}
+
+/* Headlines are NEVER bold */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+}
+
+h1 {
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+/* Body text max width */
+.prose-width { max-width: 680px; }
+
+/* Paragraph spacing */
+.body-copy p + p { margin-top: 24px; }
+
+/* Eyebrow labels */
+.eyebrow {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #D4B06A;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* ============================================
+   GOLD RULE DIVIDERS
+   ============================================ */
+.gold-rule {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background-color: var(--gold);
+  margin: 0 auto;
+}
+
+.gold-rule-left {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background-color: var(--gold);
+}
+
+/* ============================================
+   TEXTURE OVERLAYS & ARCHITECTURAL PATTERNS
+   ============================================ */
+
+/* Subtle parchment texture via CSS noise */
+.texture-parchment {
+  position: relative;
+}
+.texture-parchment::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle grid pattern for section backgrounds */
+.pattern-grid {
+  position: relative;
+}
+.pattern-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image:
+    linear-gradient(var(--gold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Marble-like gradient for dark sections */
+.pattern-marble-dark {
+  background: linear-gradient(
+    135deg,
+    #0F1B2D 0%,
+    #132236 25%,
+    #0F1B2D 50%,
+    #0E1929 75%,
+    #0F1B2D 100%
+  );
+}
+
+/* Warm subtle gradient for light sections */
+.pattern-warm {
+  background: linear-gradient(
+    180deg,
+    #F8F5F0 0%,
+    #F6F2EB 50%,
+    #F8F5F0 100%
+  );
+}
+
+/* ============================================
+   DECORATIVE SVG ELEMENTS
+   ============================================ */
+
+/* Gold accent corner decoration */
+.gold-corner-tl::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-top: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.gold-corner-br::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-bottom: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS — CSS ONLY
+   ============================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+@keyframes drawLineFull {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Animate class: elements start hidden, animate in when .visible is added */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+  animation: fallbackReveal 0.01ms 2s forwards;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: none;
+}
+
+@keyframes fallbackReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero animations (fire on load) */
+.hero-animate {
+  opacity: 0;
+  animation: fadeInUp 600ms ease-out forwards;
+}
+
+.hero-animate-delay-1 { animation-delay: 200ms; }
+.hero-animate-delay-2 { animation-delay: 400ms; }
+.hero-animate-delay-3 { animation-delay: 500ms; }
+.hero-animate-delay-4 { animation-delay: 600ms; }
+.hero-animate-delay-5 { animation-delay: 700ms; }
+
+/* Stagger delays for service tiles */
+.stagger-1 { transition-delay: 60ms; }
+.stagger-2 { transition-delay: 120ms; }
+.stagger-3 { transition-delay: 180ms; }
+.stagger-4 { transition-delay: 240ms; }
+.stagger-5 { transition-delay: 300ms; }
+.stagger-6 { transition-delay: 360ms; }
+.stagger-7 { transition-delay: 420ms; }
+.stagger-8 { transition-delay: 480ms; }
+.stagger-9 { transition-delay: 540ms; }
+.stagger-10 { transition-delay: 600ms; }
+.stagger-11 { transition-delay: 660ms; }
+.stagger-12 { transition-delay: 720ms; }
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+/* No-JS fallback: show all animated elements */
+.no-js .animate-on-scroll,
+.no-js .hero-animate {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-animate {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   SELECTION STYLING
+   ============================================ */
+::selection {
+  background-color: rgba(197, 148, 63, 0.2);
+  color: var(--primary-dark);
+}
+
+/* ============================================
+   FORM STYLES
+   ============================================ */
+input, textarea, select {
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(197, 148, 63, 0.1);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  h1 { font-size: 40px; }
+  h2 { font-size: 30px; }
+}
+
+/* ============================================
+   HERO ATMOSPHERIC EFFECTS (WIN 2 + WIN 5)
+   ============================================ */
+
+/* WIN 5: Hero image overlay — currently a warm architectural gradient placeholder */
+.hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background:
+    linear-gradient(145deg, rgba(197,148,63,0.12) 0%, rgba(237,232,224,0.06) 30%, rgba(197,148,63,0.04) 60%, transparent 100%),
+    linear-gradient(225deg, rgba(160,125,46,0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* WIN 2: Atmospheric depth — vignette + subtle light rays */
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  /* Soft vignette for depth */
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 40%, rgba(197,148,63,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 70% 30%, rgba(237,232,224,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 100% at 50% 50%, transparent 40%, rgba(248,245,240,0.6) 100%);
+}
+
+/* ============================================
+   SERVICE CARD ENHANCED HOVER (WIN 4)
+   ============================================ */
+.service-tile {
+  transition: background-color 250ms ease, color 250ms ease, transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+}
+
+.service-tile:hover {
+  background-color: #0F1B2D !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.service-tile:hover .service-tile-label {
+  color: var(--parchment) !important;
+}
+
+/* Flagship tile (09 International) gold glow on hover */
+.service-tile-flagship:hover {
+  border-color: var(--gold) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 0 20px rgba(197,148,63,0.12);
+}
+
+/* ============================================
+   CREDIBILITY BAR ENHANCED (WIN 3)
+   ============================================ */
+.stat-number-glow {
+  text-shadow: 0 0 40px rgba(197,148,63,0.15);
+}
+
+/* ============================================
+   CALENDLY EMBED STYLING (WIN 1)
+   ============================================ */
+.calendly-embed-container {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Focus indicators for keyboard navigation */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #C5943F;
+  outline-offset: 2px;
+}
