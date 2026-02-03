@@ -18,7 +18,7 @@ export default function ContactPage() {
         {/* World map background */}
         <div className="absolute inset-0 z-0" aria-hidden="true">
           <Image
-            src="/images/world-map.jpg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/world-map.jpg`}
             alt=""
             fill
             className="object-cover object-center"

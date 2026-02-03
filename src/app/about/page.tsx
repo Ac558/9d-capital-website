@@ -56,7 +56,7 @@ export default function AboutPage() {
           <div className="animate-on-scroll max-w-4xl mx-auto">
             <div className="relative w-full h-[320px] md:h-[420px] overflow-hidden">
               <Image
-                src="/images/family-sunset.jpg"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/family-sunset.jpg`}
                 alt="Multi-generational family walking together at sunset on the beach"
                 fill
                 className="object-cover object-center"

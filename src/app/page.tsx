@@ -42,7 +42,7 @@ function Hero() {
       {/* Hero background image — Manhattan skyline at dusk */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <Image
-          src="/images/hero-main.jpg"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/hero-main.jpg`}
           alt=""
           fill
           className="object-cover object-center"
@@ -148,7 +148,7 @@ function NineDDifference() {
       {/* Library background — subtle warmth */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <Image
-          src="/images/library.jpg"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/library.jpg`}
           alt=""
           fill
           className="object-cover object-center"
@@ -251,12 +251,12 @@ function InternationalSpotlight() {
         {/* City skyline strip — 6 global markets */}
         <div className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-12 animate-on-scroll">
           {[
-            { src: "/images/nyse.jpg", alt: "New York Stock Exchange facade", caption: "New York" },
-            { src: "/images/london.jpg", alt: "London skyline with Tower Bridge", caption: "London" },
-            { src: "/images/paris.jpg", alt: "Paris cityscape with Eiffel Tower", caption: "Paris" },
-            { src: "/images/riyadh.jpg", alt: "Riyadh skyline at sunset", caption: "Riyadh" },
-            { src: "/images/singapore.jpg", alt: "Singapore Marina Bay Sands aerial view", caption: "Singapore" },
-            { src: "/images/shanghai.jpg", alt: "Shanghai Pudong skyline at night", caption: "Shanghai" },
+            { src: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/nyse.jpg`, alt: "New York Stock Exchange facade", caption: "New York" },
+            { src: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/london.jpg`, alt: "London skyline with Tower Bridge", caption: "London" },
+            { src: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/paris.jpg`, alt: "Paris cityscape with Eiffel Tower", caption: "Paris" },
+            { src: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/riyadh.jpg`, alt: "Riyadh skyline at sunset", caption: "Riyadh" },
+            { src: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/singapore.jpg`, alt: "Singapore Marina Bay Sands aerial view", caption: "Singapore" },
+            { src: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/shanghai.jpg`, alt: "Shanghai Pudong skyline at night", caption: "Shanghai" },
           ].map((city) => (
             <div key={city.caption} className="flex flex-col">
               <div className="relative h-[140px] md:h-[180px] overflow-hidden rounded">
@@ -435,7 +435,7 @@ function OurApproach() {
       {/* Fountain pen background — subtle warmth */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <Image
-          src="/images/fountain-pen.jpg"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/fountain-pen.jpg`}
           alt=""
           fill
           className="object-cover object-center"

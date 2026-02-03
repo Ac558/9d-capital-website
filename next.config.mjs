@@ -7,6 +7,9 @@ const nextConfig = {
   },
   basePath: isGitHubPages ? "/9d-capital-website" : "",
   assetPrefix: isGitHubPages ? "/9d-capital-website/" : "",
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGitHubPages ? "/9d-capital-website" : "",
+  },
   async headers() {
     return [
       {
