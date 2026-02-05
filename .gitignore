@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+5d-partners/
+5d-partners-correct/
+5d-partners-modern/
+antimatter-capital/
+5d-scrape-correct/
+reference-code/
+knowledge/
